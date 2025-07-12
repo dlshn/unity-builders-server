@@ -56,3 +56,25 @@ export const getAllPackages = async (req, res) => {
     res.status(500).json({ message: "Failed to fetch packages." });
   }
 };
+
+// Update a package
+export const updatePackage = async (req, res) => {
+  try {
+    const updated = await Package.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    if (!updated) return res.status(404).json({ message: "Package not found" });
+    res.json({ message: "Package updated", package: updated });
+  } catch (error) {
+    res.status(500).json({ message: "Error updating package", error });
+  }
+};
+
+// Delete a package
+export const deletePackage = async (req, res) => {
+  try {
+    const deleted = await Package.findByIdAndDelete(req.params.id);
+    if (!deleted) return res.status(404).json({ message: "Package not found" });
+    res.json({ message: "Package deleted" });
+  } catch (error) {
+    res.status(500).json({ message: "Error deleting package", error });
+  }
+};

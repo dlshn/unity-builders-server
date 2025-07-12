@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import packageRoute from './routes/packageRoute.js';
+import projectRoutes from './routes/projectRoutes.js';
 
 dotenv.config();
 
@@ -19,6 +20,8 @@ mongoose.connect(process.env.MONGO_URI, {
 .then(() => console.log('MongoDB connected'))
 .catch((err) => console.error(err));
 
+
+app.use('/api/projects', projectRoutes);
 app.use('/api/packages', packageRoute); 
 
 const PORT = process.env.PORT || 5000;
