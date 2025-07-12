@@ -1,8 +1,9 @@
 import express from 'express';
-import { createPackage } from '../controllers/packageController.js';
+import { createPackage, getAllPackages } from '../controllers/packageController.js';
 
 const router = express.Router();
 
 router.post('/create', createPackage);
+router.get("/getAll", getAllPackages);
 
-export default router;
+export default router; 

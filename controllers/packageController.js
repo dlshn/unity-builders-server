@@ -45,3 +45,14 @@ export const createPackage = async (req, res) => {
     res.status(500).json({ message: 'Server Error' });
   }
 };
+
+
+export const getAllPackages = async (req, res) => {
+  try {
+    const packages = await Package.find();
+    res.json(packages);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Failed to fetch packages." });
+  }
+};
