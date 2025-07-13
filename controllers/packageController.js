@@ -11,9 +11,10 @@ export const createPackage = async (req, res) => {
       description,
       price,
       Square_feets,
-      location,
+      bedrooms_ground_floor,
       bedrooms_first_floor,
       bedrooms_second_floor,
+      bathrooms_ground_floor,
       bathrooms_first_floor,
       bathrooms_second_floor,
       urls
@@ -29,9 +30,10 @@ export const createPackage = async (req, res) => {
       description,
       price,
       Square_feets,
-      location,
+      bedrooms_ground_floor,
       bedrooms_first_floor,
       bedrooms_second_floor,
+      bathrooms_ground_floor,
       bathrooms_first_floor,
       bathrooms_second_floor,
       urls
