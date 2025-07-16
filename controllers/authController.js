@@ -9,7 +9,9 @@ dotenv.config();
 export const requestOtp = async (req, res) => {
   const { email } = req.body;
 
-  if (!process.env.ALLOWED_ADMINS.includes(email)) {
+  const allowedEmails = process.env.ALLOWED_ADMINS?.split(","); // that provide an array ["a@gmail", "b@gmail"]
+
+  if (!allowedEmails.includes(email)) {
     return res.status(401).json({ message: "Unauthorized Email" });
   }
 
@@ -49,7 +51,7 @@ export const verifyOtp = async (req, res) => {
 
   const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1h" });
 
-  await Otp.deleteMany({ email }); // cleanup
+  await Otp.deleteMany({ email }); // cleanup database
 
   res.json({ token });
 };
