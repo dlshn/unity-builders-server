@@ -1,4 +1,4 @@
-// controllers/authController.js
+// controllers/authController.js 
 import Otp from "../models/Otp.js";
 import emailjs from "@emailjs/nodejs";
 import jwt from "jsonwebtoken";
@@ -9,7 +9,7 @@ dotenv.config();
 export const requestOtp = async (req, res) => {
   const { email } = req.body;
 
-  const allowedEmails = process.env.ALLOWED_ADMINS?.split(","); // that provide an array ["a@gmail", "b@gmail"]
+  const allowedEmails = process.env.ADMIN_EMAILS?.split(","); // that provide an array ["a@gmail", "b@gmail"]
 
   if (!allowedEmails.includes(email)) {
     return res.status(401).json({ message: "Unauthorized Email" });
@@ -20,20 +20,20 @@ export const requestOtp = async (req, res) => {
   await Otp.create({ email, otp });
 
   try {
-    await emailjs.send(
-      process.env.EMAILJS_SERVICE_ID,
-      process.env.EMAILJS_TEMPLATE_ID,
-      {
-        to_email: email,
-        otp_code: otp,
-        name: email === "dlshngamage917@gmail.com" ? "Dilshan" : "Admin",
-      },
-      {
-        publicKey: process.env.EMAILJS_PUBLIC_KEY,
-      }
-    );
+    // await emailjs.send(
+    //   process.env.EMAILJS_SERVICE_ID,
+    //   process.env.EMAILJS_TEMPLATE_ID,
+    //   {
+    //     otp_code: otp,
+    //     name: email === "dlshngamage917@gmail.com" ? "Dilshan" : "Admin",
+    //   },
+    //   {
+    //     publicKey: process.env.EMAILJS_PUBLIC_KEY,
+    //     privateKey: process.env.EMAILJS_PRIVATE_KEY,
+    //   }
+    // );
 
-    res.json({ message: "OTP sent to email." });
+    res.json({ message: `OTP sent to ${email}` });
   } catch (err) {
     console.error("EmailJS error:", err);
     res.status(500).json({ message: "Failed to send OTP" });

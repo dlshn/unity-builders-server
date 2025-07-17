@@ -14,8 +14,8 @@ export const verifyAdminToken = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-
-    if (decoded.email !== process.env.ADMIN_EMAIL) {
+    const allowedEmails = process.env.ADMIN_EMAILS?.split(",");
+    if (!allowedEmails.includes(decoded.email)) {
       return res.status(403).json({ message: "Access Denied" });
     }
 

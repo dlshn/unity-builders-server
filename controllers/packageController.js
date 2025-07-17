@@ -2,7 +2,7 @@
 import Package from '../models/package.js'; 
 
 // @desc   Create a new package
-// @route  POST /api/packages/create 
+// @route  POST /api/packages/create  
 // @access Public
 export const createPackage = async (req, res) => {
   try {
