@@ -1,11 +1,12 @@
-import express from 'express';
+import express from 'express'; 
 import { createPackage, getAllPackages, updatePackage, deletePackage } from '../controllers/packageController.js';
+import {verifyAdminToken} from '../middlewares/authMiddleware.js';
 
 const router = express.Router();
 
-router.post('/create', createPackage);
+router.post('/create',verifyAdminToken, createPackage);
 router.get("/getAll", getAllPackages);
-router.put("/update/:id", updatePackage);
-router.delete("/delete/:id", deletePackage);
+router.put("/update/:id",verifyAdminToken, updatePackage);
+router.delete("/delete/:id",verifyAdminToken, deletePackage);
 
 export default router; 
