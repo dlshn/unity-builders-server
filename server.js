@@ -10,10 +10,25 @@ import authRoutes from "./routes/authRoutes.js";
 dotenv.config();
 
 const app = express(); 
+const allowedOrigins = [
+  'https://unitybuilderslanka.com',
+  'https://www.unitybuilderslanka.com',
+  'https://your-vercel-project.vercel.app' // optional if you use previews
+];
+
 app.use(cors({
-  origin: 'https://unitybuilderslanka.com',
-  credentials: true
+  origin: function (origin, callback) {
+    // Allow requests with no origin like mobile apps or curl
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    } else {
+      return callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
 }));
+
 app.use(express.json());
 
 // MongoDB connection
