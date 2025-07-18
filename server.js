@@ -12,8 +12,9 @@ dotenv.config();
 const app = express(); 
 const allowedOrigins = [
   'https://unitybuilderslanka.com',
-  'https://www.unitybuilderslanka.com',
-  'https://your-vercel-project.vercel.app' // optional if you use previews
+'https://www.unitybuilderslanka.com',
+'https://unity-builders-lanka-web.vercel.app' // ← Your real Vercel preview domain
+
 ];
 
 app.use(cors({
