@@ -24,6 +24,7 @@ export const requestOtp = async (req, res) => {
       process.env.EMAILJS_SERVICE_ID,
       process.env.EMAILJS_TEMPLATE_ID,
       {
+        to_email: email,
         otp_code: otp,
         name: email === "dlshngamage917@gmail.com" ? "Dilshan" : "princthiru965@gmail.com" ? "Princi" : "prabathc357@gmail.com"? "Prabath" : "User"
       },
@@ -49,7 +50,7 @@ export const verifyOtp = async (req, res) => {
     return res.status(401).json({ message: "Invalid or expired OTP" });
   }
 
-  const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "1h" });
+  const token = jwt.sign({ email }, process.env.JWT_SECRET, { expiresIn: "3h" });
 
   await Otp.deleteMany({ email }); // cleanup database
 
