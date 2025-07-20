@@ -20,18 +20,18 @@ export const requestOtp = async (req, res) => {
   await Otp.create({ email, otp });
 
   try {
-    // await emailjs.send(
-    //   process.env.EMAILJS_SERVICE_ID,
-    //   process.env.EMAILJS_TEMPLATE_ID,
-    //   {
-    //     otp_code: otp,
-    //     name: email === "dlshngamage917@gmail.com" ? "Dilshan" : "Admin",
-    //   },
-    //   {
-    //     publicKey: process.env.EMAILJS_PUBLIC_KEY,
-    //     privateKey: process.env.EMAILJS_PRIVATE_KEY,
-    //   }
-    // );
+    await emailjs.send(
+      process.env.EMAILJS_SERVICE_ID,
+      process.env.EMAILJS_TEMPLATE_ID,
+      {
+        otp_code: otp,
+        name: email === "dlshngamage917@gmail.com" ? "Dilshan" : "princthiru965@gmail.com" ? "Princi" : "prabathc357@gmail.com"? "Prabath" : "User"
+      },
+      {
+        publicKey: process.env.EMAILJS_PUBLIC_KEY,
+        privateKey: process.env.EMAILJS_PRIVATE_KEY,
+      }
+    );
 
     res.json({ message: `OTP sent to ${email}` });
   } catch (err) {

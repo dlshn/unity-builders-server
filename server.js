@@ -13,7 +13,7 @@ const app = express();
 const allowedOrigins = [
   'https://unitybuilderslanka.com',
 'https://www.unitybuilderslanka.com',
-'https://unity-builders-lanka-web.vercel.app' // ← Your real Vercel preview domain
+'https://unity-builders-lanka-web.vercel.app'
 
 ];
 
