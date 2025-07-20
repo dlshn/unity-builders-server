@@ -19,6 +19,13 @@ export const requestOtp = async (req, res) => {
 
   await Otp.create({ email, otp });
 
+  const name = 
+  email === "dlshngamage917@gmail.com" ? "Dilshan" :
+  email === "princthiru965@gmail.com" ? "Princi" :
+  email === "prabathc357@gmail.com" ? "Prabath" :
+  "User";
+
+
   try {
     await emailjs.send(
       process.env.EMAILJS_SERVICE_ID,
@@ -26,7 +33,7 @@ export const requestOtp = async (req, res) => {
       {
         to_email: email,
         otp_code: otp,
-        name: email === "dlshngamage917@gmail.com" ? "Dilshan" : "princthiru965@gmail.com" ? "Princi" : "prabathc357@gmail.com"? "Prabath" : "User"
+        name: name,
       },
       {
         publicKey: process.env.EMAILJS_PUBLIC_KEY,
