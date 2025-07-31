@@ -51,7 +51,7 @@ export const createPackage = async (req, res) => {
 
 export const getAllPackages = async (req, res) => {
   try {
-    const packages = await Package.find().sort({ price: 1 }); 
+    const packages = await Package.find().sort({ price: 1 });
     res.json(packages);
   } catch (error) {
     console.error(error);

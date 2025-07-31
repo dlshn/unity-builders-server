@@ -21,7 +21,7 @@ export const requestOtp = async (req, res) => {
 
   const name = 
   email === "dlshngamage917@gmail.com" ? "Dilshan" :
-  email === "princthiru965@gmail.com" ? "Princi" :
+  email === "vishwamadushanka02@gmail.com" ? "Podii" :
   email === "prabathc357@gmail.com" ? "Prabath" :
   "User";
 
