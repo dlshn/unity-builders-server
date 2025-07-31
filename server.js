@@ -17,10 +17,11 @@ const allowedOrigins = [
 'https://unity-builders-lanka-web.vercel.app'
 
 ];
+// app.use(cors()); // Enable CORS for all origins /* ***********only for local development************* */
 
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin like mobile apps or curl
+    // Allow requests with no origin like mobile apps or curl     
     if (!origin) return callback(null, true);
     if (allowedOrigins.includes(origin)) {
       return callback(null, true);
