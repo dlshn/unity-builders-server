@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import packageRoute from './routes/packageRoute.js';
 import projectRoutes from './routes/projectRoutes.js';
 import authRoutes from "./routes/authRoutes.js";
+import interiorRoutes from "./routes/interiorRoutes.js";
 
 dotenv.config();
 
@@ -17,7 +18,7 @@ const allowedOrigins = [
 'https://unity-builders-lanka-web.vercel.app'
 
 ];
-// app.use(cors()); // Enable CORS for all origins /* ***********only for local development************* */
+// app.use(cors()); // Enable CORS for all origins /* ***********only for local development************* */ 
 
 app.use(cors({
   origin: function (origin, callback) {
@@ -31,10 +32,9 @@ app.use(cors({
   },
   credentials: true,
 }));
-
 app.use(express.json());
 
-// MongoDB connection
+// MongoDB connection 
 mongoose.connect(process.env.MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -45,6 +45,7 @@ mongoose.connect(process.env.MONGO_URI, {
 app.use("/api/auth", authRoutes);
 app.use('/api/projects', projectRoutes);
 app.use('/api/packages', packageRoute); 
+app.use('/api/interior', interiorRoutes); 
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));

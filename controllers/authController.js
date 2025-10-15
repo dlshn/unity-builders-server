@@ -41,7 +41,18 @@ export const requestOtp = async (req, res) => {
       }
     );
 
-    res.json({ message: `OTP sent to ${email}` });
+    function maskEmail(email) {
+      const [name, domain] = email.split("@");
+      if (!name || !domain) return email;
+
+      // Keep first 2 characters visible, rest replaced with '*'
+      const visiblePart = name.slice(0, 3);
+      const hiddenPart = "*".repeat(Math.max(name.length - 3, 0));
+
+      return `${visiblePart}${hiddenPart}@${domain}`;
+    }
+
+    res.json({ message: `Hello..${name} Your OTP sent to ${maskEmail(email)}` });
   } catch (err) {
     console.error("EmailJS error:", err);
     res.status(500).json({ message: "Failed to send OTP" });
