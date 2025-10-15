@@ -5,7 +5,7 @@ const interior = new mongoose.Schema({
   price: { type: String, required: true },
   bedrooms: { type: Number, required: true },
   baths: { type: Number, required: true },
-  urls: [{ type: String, required: true }], // array of image URLs
+  urls: [{ type: String, required: true }], // array of image URLs 
 });
 
 export default mongoose.model("Interior", interior);

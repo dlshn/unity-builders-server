@@ -1,4 +1,4 @@
-import Interior from "../models/interior.js";
+import Interior from "../models/Interior.js";
 
 // @desc Get all Interiors
 export const getInterior = async (req, res) => {
